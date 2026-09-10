@@ -1,0 +1,292 @@
+:root{
+    --pink: #E6127D;
+    --pink-dark: #C40E68;
+    --pink-soft: #FDEFF4;
+    --cream: #F6DDBA;
+    --ink: #241B24;
+    --muted: #8C7F8A;
+    --white: #FFFFFF;
+    --border: #F3D9E4;
+    --radius-lg: 22px;
+    --radius-md: 14px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  body{
+    font-family:'Poppins', sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 0% 0%, #FBD7E6 0%, transparent 45%),
+      radial-gradient(circle at 100% 15%, #FBD7E6 0%, transparent 40%),
+      linear-gradient(180deg, #FFF6FA 0%, #FFFFFF 55%);
+    min-height:100vh;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    background:var(--white);
+    box-shadow:0 2px 10px rgba(230,18,125,0.08);
+    position:sticky;
+    top:0;
+    z-index:20;
+  }
+  .header-inner{
+    max-width:1240px;
+    margin:0 auto;
+    padding:16px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:1.6rem;
+    color:var(--pink);
+  }
+  .header-icons{
+    display:flex;
+    align-items:center;
+    gap:22px;
+  }
+  .icon-btn{
+    position:relative;
+    background:none;
+    border:none;
+    font-size:1.25rem;
+    color:var(--ink);
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    transition:background .2s ease, color .2s ease, transform .15s ease;
+  }
+  .icon-btn:hover{ background:var(--pink-soft); color:var(--pink); }
+  .icon-btn.active{ color:var(--pink); }
+  .icon-btn .badge{
+    position:absolute;
+    top:-2px; right:-2px;
+    background:var(--pink);
+    color:#fff;
+    font-size:.65rem;
+    font-weight:700;
+    min-width:17px;
+    height:17px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 3px;
+  }
+
+  /* ---------- Page heading ---------- */
+  .page-head{
+    max-width:1240px;
+    margin:0 auto;
+    padding:52px 32px 8px;
+    text-align:center;
+  }
+  .page-head .eyebrow{
+    font-size:.8rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--pink);
+    font-weight:600;
+  }
+  .page-head h1{
+    font-family:'Baloo 2', sans-serif;
+    font-size:2.4rem;
+    margin-top:6px;
+    color:var(--ink);
+  }
+  .page-head h1 i{ color:var(--pink); margin-left:6px; }
+  .page-head p{
+    margin-top:10px;
+    color:var(--muted);
+    font-size:1rem;
+  }
+
+  /* ---------- Grid ---------- */
+  .fav-grid{
+    max-width:1240px;
+    margin:0 auto;
+    padding:36px 32px 100px;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:26px;
+  }
+  @media (max-width:1080px){ .fav-grid{ grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:800px){ .fav-grid{ grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .fav-grid{ grid-template-columns:1fr; padding:24px 18px 80px;} .page-head{ padding:36px 18px 4px;} }
+
+  .card{
+    background:var(--white);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    box-shadow:0 6px 22px rgba(230,18,125,0.08);
+    display:flex;
+    flex-direction:column;
+    transition:transform .25s ease, box-shadow .25s ease;
+    animation:pop .35s ease;
+  }
+  .card:hover{ transform:translateY(-5px); box-shadow:0 14px 30px rgba(230,18,125,0.16); }
+  @keyframes pop{ from{opacity:0; transform:scale(.94);} to{opacity:1; transform:scale(1);} }
+  @keyframes fadeOut{ to{ opacity:0; transform:scale(.9); } }
+
+  .card-img{
+    position:relative;
+    aspect-ratio:1/1;
+    overflow:hidden;
+  }
+  .card-img img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .35s ease;
+  }
+  .card:hover .card-img img{ transform:scale(1.06); }
+
+  .fav-toggle{
+    position:absolute;
+    top:12px; right:12px;
+    width:36px; height:36px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.92);
+    border:none;
+    color:var(--pink);
+    font-size:1.05rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    box-shadow:0 3px 8px rgba(0,0,0,0.15);
+    transition:transform .15s ease;
+  }
+  .fav-toggle:hover{ transform:scale(1.1); }
+
+  .tag{
+    position:absolute;
+    top:12px; left:12px;
+    background:var(--cream);
+    color:#7A4E17;
+    font-size:.68rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    padding:5px 10px;
+    border-radius:20px;
+  }
+
+  .card-body{
+    padding:16px 18px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    flex:1;
+  }
+  .card-body h3{
+    font-family:'Baloo 2', sans-serif;
+    font-size:1.08rem;
+    color:var(--ink);
+  }
+  .card-body .desc{
+    font-size:.82rem;
+    color:var(--muted);
+    line-height:1.4;
+    flex:1;
+  }
+  .price-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:8px;
+  }
+  .price{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:1.15rem;
+    color:var(--pink-dark);
+  }
+  .add-btn{
+    background:var(--pink);
+    color:#fff;
+    border:none;
+    font-family:'Poppins', sans-serif;
+    font-weight:600;
+    font-size:.85rem;
+    padding:9px 16px;
+    border-radius:24px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    transition:background .2s ease, transform .15s ease;
+  }
+  .add-btn:hover{ background:var(--pink-dark); transform:translateY(-1px); }
+
+  /* ---------- Empty state ---------- */
+  .empty-state{
+    max-width:1240px;
+    margin:0 auto;
+    padding:70px 32px 130px;
+    text-align:center;
+    display:none;
+  }
+  .empty-state .heart-wrap{
+    width:96px; height:96px;
+    margin:0 auto 22px;
+    border-radius:50%;
+    background:var(--pink-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:2.4rem;
+    color:var(--pink);
+  }
+  .empty-state h2{
+    font-family:'Baloo 2', sans-serif;
+    font-size:1.6rem;
+    margin-bottom:8px;
+  }
+  .empty-state p{
+    color:var(--muted);
+    margin-bottom:26px;
+  }
+  .explore-btn{
+    background:var(--pink);
+    color:#fff;
+    border:none;
+    font-weight:600;
+    padding:13px 30px;
+    border-radius:26px;
+    font-size:.95rem;
+    cursor:pointer;
+    transition:background .2s ease;
+  }
+  .explore-btn:hover{ background:var(--pink-dark); }
+
+  /* ---------- Toast ---------- */
+  .toast{
+    position:fixed;
+    bottom:28px;
+    left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--ink);
+    color:#fff;
+    padding:12px 22px;
+    border-radius:30px;
+    font-size:.88rem;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+    z-index:50;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); pointer-events:auto; }
+  .toast i{ color:var(--pink); }

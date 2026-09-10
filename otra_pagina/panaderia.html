@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panadería Dulce Tentación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="panaderia.css">
+</head>
+<body>
+
+<!-- ============================================= -->
+<!-- HEADER / NAVEGACIÓN -->
+<!-- ============================================= -->
+<header class="site-header">
+  <div class="container header-inner">
+    <button onclick="location.href='../index.php'" class="back-btn">
+      <span class="arrow-icon">&#8592;</span> Volver a Dulce Tentación
+    </button>
+
+    <div class="brand">
+      <!-- IMAGEN: logo pequeño (espiga de trigo dibujada a mano), aprox 24x24px -->
+      <span class="brand-logo" aria-hidden="true">☕</span>
+      <div class="brand-text">
+        <span class="brand-name">Panadería</span>
+        <span class="brand-sub">Dulce Tentación</span>
+      </div>
+    </div>
+
+    <nav class="main-nav">
+      <a href="#inicio" class="active">Inicio</a>
+      <a href="#panaderia">Panadería</a>
+      <a href="#cafeteria">Cafetería</a>
+      <a href="#hojaldres">Hojaldres</a>
+      <a href="#mas">Más <span class="chevron">&#9662;</span></a>
+    </nav>
+
+    
+  </div>
+</header>
+
+<!-- ============================================= -->
+<!-- HERO -->
+<!-- ============================================= -->
+<section class="hero" id="inicio">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <h1>El sabor de una<br>tradición</h1>
+      <p>Pan recién horneado, café preparado con cariño y momentos para compartir.</p>
+      <a href="#menu" class="btn btn-dark">Ver nuestros productos <span class="arrow-icon">&#8594;</span></a>
+
+      <!-- IMAGEN: sello circular "Pan fresco todos los días" (puede ser SVG/badge) -->
+      <div class="badge-circle">
+        <span>PAN FRESCO · TODOS LOS DÍAS</span>
+        <div class="badge-icon">☕</div>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <!-- IMAGEN PRINCIPAL: foto de canasta de panes variados (baguettes, panes rústicos, croissants)
+           con fondo oscuro/pizarra, más una taza de café con leche y un croissant al frente,
+           granos de café esparcidos sobre una tabla de madera -->
+      <img src="pan-removebg-preview (1).png" alt="Canasta de panes recién horneados con café y croissant">
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- NUESTROS FAVORITOS -->
+<!-- ============================================= -->
+<section class="favoritos" id="menu">
+  <div class="container">
+    <h2 class="section-title"><span class="rule"></span>Nuestros Favoritos<span class="rule"></span></h2>
+
+    <div class="carousel-wrap">
+      
+
+      <div class="carousel-track" id="carouselTrack">
+
+        <article class="product-card">
+          <!-- IMAGEN: dos panes campesinos rústicos sobre fondo claro -->
+          <img src="https://st2.depositphotos.com/1765488/6303/i/450/depositphotos_63035425-stock-photo-freshly-baked-traditional-bread.jpg" alt="Pan Campesino">
+          <div class="product-info">
+            <h3>Pan Campesino</h3>
+            <div class="product-meta">
+              <span class="price">$3.50</span>
+              <span class="rating">&#9733; 4.7</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <!-- IMAGEN: croissants clásicos apilados -->
+          <img src="https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2022/07/17/fotografia-de-cruasanes.jpeg" alt="Croissant Clásico">
+          <div class="product-info">
+            <h3>Croissant Clásico</h3>
+            <div class="product-meta">
+              <span class="price">$2.90</span>
+              <span class="rating">&#9733; 4.8</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <!-- IMAGEN: taza de café latte con arte latte, vista de cerca -->
+          <img src="https://pixelz.cc/wp-content/uploads/2018/07/latte-art-wood-table-uhd-4k-wallpaper.jpg" alt="Café Latte">
+          <div class="product-info">
+            <h3>Café Latte</h3>
+            <div class="product-meta">
+              <span class="price">$3.00</span>
+              <span class="rating">&#9733; 4.9</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <!-- IMAGEN: pan de chocolate / caracola con azúcar espolvoreada -->
+          <img src="https://t4.ftcdn.net/jpg/21/48/95/03/360_F_2148950334_lP9HjRmGvZ4HE4eSHbMBMrvFXrOwfUOe.jpg" alt="Pan de Chocolate">
+          <div class="product-info">
+            <h3>Pan de Chocolate</h3>
+            <div class="product-meta">
+              <span class="price">$3.50</span>
+              <span class="rating">&#9733; 4.6</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <!-- IMAGEN: galletas artesanales con chispas de chocolate -->
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS82hjPe355lvF44HkwuWxJOMMs4q3jBgBRfnednzYYMgDHJ5jnHuYnBZ9M&s=10" alt="Galletas Artesanales">
+          <div class="product-info">
+            <h3>Galletas Decorativas</h3>
+            <div class="product-meta">
+              <span class="price">$2.50</span>
+              <span class="rating">&#9733; 4.8</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      
+    </div>
+
+    <div class="cta-center">
+      <a href="../index.php" class="btn btn-dark">Dulce Tentación<span class="arrow-icon">&#8594;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- NUESTRA HISTORIA -->
+<!-- ============================================= -->
+<section class="historia">
+  <div class="container historia-inner">
+
+    <div class="historia-image">
+      <!-- IMAGEN: panes rústicos horneados de cerca, tono cálido, con textura de harina -->
+      <img class="historia-photo" src="https://thumbs.dreamstime.com/b/cerrar-un-mont%C3%B3n-de-panes-fotograf%C3%ADa-detallada-una-selecci%C3%B3n-artesanales-con-exteriores-crujientes-e-interiores-suaves-grabados-384705547.jpg" alt="Panes artesanales recién horneados">
+      <span class="handwritten">Hecho <br>con amor &#9825;</span>
+    </div>
+
+    <div class="historia-text">
+      <h2 class="section-title-left">Nuestra Historia <span class="rule"></span></h2>
+      <p>Panadería Dulce Tentación nació del sueño de llevar el sabor artesanal a cada hogar. Comenzamos con una pequeña cocina, con grandes sueños y mucho amor por lo que hacemos. Hoy, seguimos horneando con la misma pasión, ofreciendo panes, café y delicias que conectan personas y crean momentos especiales.</p>
+      <a href="#historia" class="btn btn-dark">Conoce más sobre nosotros <span class="arrow-icon">&#8594;</span></a>
+    </div>
+
+    <div class="historia-features">
+      <div class="feature">
+        <span class="feature-icon">🌾</span>
+        <p>Ingredientes de calidad</p>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">☕</span>
+        <p>Café 100% colombiano</p>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">&#9825;</span>
+        <p>Hecho con amor</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- BANNER FINAL / EXPERIENCIA -->
+<!-- ============================================= -->
+<section class="experiencia">
+
+  <div class="container experiencia-inner">
+    <div class="experiencia-text">
+      <h2>Más que pan,<br>es una experiencia.</h2>
+      <p>Ven y disfruta de nuestros panes, bebidas y delicias, hechas para ti.</p>
+    </div>
+
+    <div class="experiencia-image">
+      <!-- IMAGEN: mesa oscura con café con leche, croissant y granos de café esparcidos, iluminación cálida y ambiente acogedor -->
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDD4hEGhMx5kDG5EcHBEW62UMzFDc9a7246zxjzE-w916-gR58b5rXpMXv&s=10" alt="Café y croissant sobre mesa oscura">
+      <span class="handwritten-light">Buen café<br>Buenas ideas<br>Grandes momentos</span>
+    </div>
+  </div>
+</section>
+
+<script src="panaderia.js"></script>
+</body>
+</html>
