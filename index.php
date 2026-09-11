@@ -86,7 +86,7 @@ session_start();
     <section class="categorias">
 
         <a href="productos.php?categoria=1" class="categoria">
-            <img src="img/Tortas de Tres Leches.png">
+            <img src="img/Torta de Tres Leches.png">
             <div class="overlay">
                 <h3>Pastelería</h3>
             </div>
