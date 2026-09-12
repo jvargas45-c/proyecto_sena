@@ -55,7 +55,8 @@ session_start();
                         <a href="pag_menu/postres.html">Preparar</a>
                         <a href="pag_menu/acerca.html">Acerca de Nosotros</a>
                         <a href="https://web.whatsapp.com/">Contáctanos</a>
-                        <a href="otra_pagina/panaderia.html">Panadería</a>
+                        <a href="otra_pagina/panaderia.php">Panadería</a>
+                        <a href="carrito/historial.php">Mis pedidos</a>
                 </div>
             </div>
         </div>

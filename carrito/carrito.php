@@ -168,7 +168,17 @@ $total += $subtotal;
 
 <div class="producto">
 
-    <img src="../img/img2/<?= $fila["imagen"]; ?>">
+    <?php 
+    $imagen = $fila["imagen"];
+
+    if (filter_var($imagen, FILTER_VALIDATE_URL)) {
+        $rutaImagen = $imagen;
+    } else {
+        $rutaImagen = "../img/img2/" . $imagen;
+    }
+    ?>
+
+    <img src="<?= htmlspecialchars($rutaImagen); ?>">
 
     <div class="info">
 
@@ -214,7 +224,7 @@ $<?= number_format($total,0,",","."); ?>
         ← Seguir comprando
     </a>
 
-    <a href="#" class="boton">
+    <a href="finalizar.php" class="boton">
         Finalizar compra
     </a>
 

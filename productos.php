@@ -35,7 +35,8 @@ $titulos = [
     1 => "Pastelería",
     2 => "Personalizados",
     3 => "Minis",
-    4 => "Antojitos"
+    4 => "Antojitos",
+    5 => "Panadería"
 ];
 
 $titulo = $titulos[$idCategoria] ?? "Productos";

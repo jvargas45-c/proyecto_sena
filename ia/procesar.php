@@ -106,6 +106,12 @@ elseif (
 
 }
 
+elseif (
+    str_contains($mensaje, "panadería")
+) {
+    echo "Ve al menú y dale clic a Panadería para ver otros productos ☕";
+}
+
 else {
 
     echo "🤔 Todavía estoy aprendiendo. Puedes preguntarme sobre nuestras tortas, minis, personalizados, antojitos o cómo realizar una compra.";

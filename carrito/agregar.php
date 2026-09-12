@@ -51,6 +51,6 @@ mysqli_stmt_execute($stmt);
 $_SESSION["mensaje"] = "🛒 Producto agregado al carrito.";
 $_SESSION["tipo"] = "success";
 
-header("Location: ../productos.php");
+header("Location: " . $_SERVER["HTTP_REFERER"]);
 exit();
 ?>

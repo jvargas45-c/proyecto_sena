@@ -1,3 +1,46 @@
+<?php
+include("../conexion.php");
+
+
+$idCategoria = 5; // Categoría Panadería
+
+// Consulta
+$sql = "SELECT
+            p.id_producto,
+            p.nombre_producto,
+            p.tipo_ponque,
+            p.descripcion,
+            p.stock,
+            p.imagen,
+            c.nombre_categoria,
+            t.nombre_tamano,
+            pr.precio
+        FROM productos p
+        INNER JOIN categorias c
+            ON p.id_categoria = c.id_categoria
+        INNER JOIN tamanos t
+            ON p.id_tamano = t.id_tamano
+        INNER JOIN precios pr
+            ON p.id_producto = pr.id_producto
+        WHERE p.id_categoria = ?";
+
+$stmt = mysqli_prepare($conexion, $sql);
+mysqli_stmt_bind_param($stmt, "i", $idCategoria);
+mysqli_stmt_execute($stmt);
+
+$resultado = mysqli_stmt_get_result($stmt);
+
+$titulos = [
+    1 => "Pastelería",
+    2 => "Personalizados",
+    3 => "Minis",
+    4 => "Antojitos",
+    5 => "Panadería"
+];
+
+$titulo = $titulos[$idCategoria] ?? "Productos";
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -71,80 +114,68 @@
 <!-- ============================================= -->
 <section class="favoritos" id="menu">
   <div class="container">
-    <h2 class="section-title"><span class="rule"></span>Nuestros Favoritos<span class="rule"></span></h2>
+    <h2 class="section-title"><span class="rule"></span>Nuestros Productos<span class="rule"></span></h2>
 
-    <div class="carousel-wrap">
-      
+<div class="carousel-wrap">
 
-      <div class="carousel-track" id="carouselTrack">
+    <div class="carousel-track" id="carouselTrack">
 
-        <article class="product-card">
-          <!-- IMAGEN: dos panes campesinos rústicos sobre fondo claro -->
-          <img src="https://st2.depositphotos.com/1765488/6303/i/450/depositphotos_63035425-stock-photo-freshly-baked-traditional-bread.jpg" alt="Pan Campesino">
-          <div class="product-info">
-            <h3>Pan Campesino</h3>
-            <div class="product-meta">
-              <span class="price">$3.50</span>
-              <span class="rating">&#9733; 4.7</span>
-            </div>
-          </div>
-        </article>
+        <?php
+        if(mysqli_num_rows($resultado) > 0){
 
-        <article class="product-card">
-          <!-- IMAGEN: croissants clásicos apilados -->
-          <img src="https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2022/07/17/fotografia-de-cruasanes.jpeg" alt="Croissant Clásico">
-          <div class="product-info">
-            <h3>Croissant Clásico</h3>
-            <div class="product-meta">
-              <span class="price">$2.90</span>
-              <span class="rating">&#9733; 4.8</span>
-            </div>
-          </div>
-        </article>
+            while($producto = mysqli_fetch_assoc($resultado)){
 
-        <article class="product-card">
-          <!-- IMAGEN: taza de café latte con arte latte, vista de cerca -->
-          <img src="https://pixelz.cc/wp-content/uploads/2018/07/latte-art-wood-table-uhd-4k-wallpaper.jpg" alt="Café Latte">
-          <div class="product-info">
-            <h3>Café Latte</h3>
-            <div class="product-meta">
-              <span class="price">$3.00</span>
-              <span class="rating">&#9733; 4.9</span>
-            </div>
-          </div>
-        </article>
+                echo $producto["nombre_producto"] . "<br>";
 
-        <article class="product-card">
-          <!-- IMAGEN: pan de chocolate / caracola con azúcar espolvoreada -->
-          <img src="https://t4.ftcdn.net/jpg/21/48/95/03/360_F_2148950334_lP9HjRmGvZ4HE4eSHbMBMrvFXrOwfUOe.jpg" alt="Pan de Chocolate">
-          <div class="product-info">
-            <h3>Pan de Chocolate</h3>
-            <div class="product-meta">
-              <span class="price">$3.50</span>
-              <span class="rating">&#9733; 4.6</span>
-            </div>
-          </div>
-        </article>
+                $imagen = $producto["imagen"];
 
-        <article class="product-card">
-          <!-- IMAGEN: galletas artesanales con chispas de chocolate -->
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS82hjPe355lvF44HkwuWxJOMMs4q3jBgBRfnednzYYMgDHJ5jnHuYnBZ9M&s=10" alt="Galletas Artesanales">
-          <div class="product-info">
-            <h3>Galletas Decorativas</h3>
-            <div class="product-meta">
-              <span class="price">$2.50</span>
-              <span class="rating">&#9733; 4.8</span>
-            </div>
-          </div>
-        </article>
+                if(filter_var($imagen, FILTER_VALIDATE_URL)){
+                    $rutaImagen = $imagen;
+                }else{
+                    $rutaImagen = "../img/img2/" . $imagen;
+                }
+        ?>
 
-      </div>
+<article class="product-card">
 
-      
+    <img src="<?= htmlspecialchars($rutaImagen); ?>"
+         alt="<?= htmlspecialchars($producto["nombre_producto"]); ?>">
+
+    <div class="product-info">
+
+        <h3><?= htmlspecialchars($producto["nombre_producto"]); ?></h3>
+
+        <span class="price">
+            $<?= number_format($producto["precio"],0,",","."); ?>
+        </span>
+
+        <form action="../carrito/agregar.php" method="POST">
+            <input type="hidden"
+                   name="id_producto"
+                   value="<?= $producto["id_producto"]; ?>">
+
+            <button class="btn-carrito">
+                🛒 Agregar al carrito
+            </button>
+        </form>
+
     </div>
 
+</article>
+
+        <?php
+            }
+        }else{
+            echo "<h2>No hay productos registrados.</h2>";
+        }
+        ?>
+
+    </div>
+
+</div>
+
     <div class="cta-center">
-      <a href="../index.php" class="btn btn-dark">Dulce Tentación<span class="arrow-icon">&#8594;</span></a>
+      <a href="../index.php" class="btn btn-dark">Ver mas productos<span class="arrow-icon">&#8594;</span></a>
     </div>
   </div>
 </section>
@@ -164,7 +195,7 @@
     <div class="historia-text">
       <h2 class="section-title-left">Nuestra Historia <span class="rule"></span></h2>
       <p>Panadería Dulce Tentación nació del sueño de llevar el sabor artesanal a cada hogar. Comenzamos con una pequeña cocina, con grandes sueños y mucho amor por lo que hacemos. Hoy, seguimos horneando con la misma pasión, ofreciendo panes, café y delicias que conectan personas y crean momentos especiales.</p>
-      <a href="#historia" class="btn btn-dark">Conoce más sobre nosotros <span class="arrow-icon">&#8594;</span></a>
+      <a href="../pag_menu/acerca.html" class="btn btn-dark">Conoce más sobre nosotros <span class="arrow-icon">&#8594;</span></a>
     </div>
 
     <div class="historia-features">
