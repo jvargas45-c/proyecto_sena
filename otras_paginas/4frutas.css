@@ -142,3 +142,23 @@ header a{
     height: 160px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  /* Suponiendo que los pasteles laterales son elementos separados o pseudo-elementos */
+  .cake-background-left,
+  .cake-background-right {
+    display: none;
+  }
+
+  .text-card {
+    width: 100%; /* La tarjeta de texto ocupa todo el ancho */
+    padding: 20px; /* Añade margen interno para que el texto no toque los bordes */
+    margin: 0; /* Elimina márgenes externos */
+    border: none; /* Opcional: quita el borde si lo tiene */
+  }
+
+  /* Asegura que el contenedor principal no tenga flex horizontal */
+  .main-container {
+    display: block; /* Cambia de flex a bloque para apilamiento vertical */
+  }
+}

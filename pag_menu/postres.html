@@ -1,10 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Postres - Dulce Tentación</title>
-    <link rel="stylesheet" href="postres.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+    
+    <style>
+      *{
+          margin:0;
+          padding:0;
+          box-sizing: border-box;
+          font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body{
+          background: #ffe6f0;
+          position: relative;
+          overflow-x: hidden;
+      }
+
+      header{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px 50px;
+          background: white;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      header a{
+          font-family: 'Fredoka', sans-serif;
+          font-size: 1.6rem;
+          font-weight: 700;
+          color: #d63384;
+          text-decoration: none;
+      }
+
+      .postres-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px;
+        text-align: center;
+      }
+
+      .postres-container h2 {
+        font-family: 'Fredoka', sans-serif;
+        color: #d63384;
+        margin-bottom: 30px;
+      }
+
+      /* Cuadrícula de tarjetas */
+      .postres-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 25px;
+        align-items: start;
+      }
+
+      /* Tarjeta individual */
+      .postre-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 15px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        overflow: hidden;
+      }
+
+      .postre-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(214, 51, 132, 0.15);
+      }
+
+      /* Imagen de la tarjeta */
+      .box-imagen {
+        background-color: #fce4ec;
+        border-radius: 12px;
+        height: 180px;
+        width: 100%;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+
+      .box-imagen img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .postre-card h3 {
+        font-size: 1.1rem;
+        color: #333333;
+      }
+
+      /* Ocultar el contenido interno en la tarjeta */
+      .receta-detalle {
+        display: none !important;
+      }
+
+      /* --- ESTILOS DEL MODAL EMERGENTE --- */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 9999;
+        padding: 20px;
+      }
+
+      .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .recipe-modal {
+        background: #ffffff;
+        border-radius: 20px;
+        max-width: 750px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        position: relative;
+        padding: 30px;
+        transform: translateY(20px);
+        transition: transform 0.3s ease;
+      }
+
+      .modal-overlay.active .recipe-modal {
+        transform: translateY(0);
+      }
+
+      .modal-close-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 32px;
+        color: #d63384;
+        cursor: pointer;
+        line-height: 1;
+      }
+
+      .modal-body {
+        display: flex;
+        gap: 30px;
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .modal-left {
+        flex: 1;
+        text-align: center;
+      }
+
+      .modal-img-container {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin-bottom: 15px;
+      }
+
+      .modal-img-container img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .modal-title {
+        color: #d63384;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .modal-right {
+        flex: 1.2;
+      }
+
+      .modal-subtitle {
+        font-size: 0.8rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        color: #888;
+        text-transform: uppercase;
+      }
+
+      .section-heading {
+        color: #d63384;
+        margin: 12px 0 8px 0;
+        font-size: 1.05rem;
+      }
+
+      #modal-ingredients ul,
+      #modal-steps ol {
+        padding-left: 20px;
+        font-size: 0.9rem;
+        color: #444;
+        line-height: 1.5;
+      }
+
+      #modal-ingredients li,
+      #modal-steps li {
+        margin-bottom: 6px;
+      }
+
+      .divider {
+        border: 0;
+        border-top: 1px solid #f0f0f0;
+        margin: 15px 0;
+      }
+
+      .modal-footer {
+        margin-top: 20px;
+        text-align: right;
+      }
+
+      .btn-primary {
+        background-color: #d63384;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: #b0236a;
+      }
+
+      /* Móviles */
+      @media (max-width: 650px) {
+        .modal-body {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .modal-footer {
+          text-align: center;
+        }
+
+        .recipe-modal {
+          padding: 20px;
+        }
+      }
+    </style>
 </head>
 <body>
 
@@ -17,7 +275,7 @@
   
   <div class="postres-grid">
     
-    <!-- Tarjeta1 -->
+    <!-- Tarjeta 1 -->
     <div class="postre-card">
       <div class="box-imagen">
         <img src="https://i.blogs.es/fc98b8/trufas/1366_2000.jpg" alt="Trufas de cava y frambuesa">
@@ -48,7 +306,7 @@
       </div>
     </div>
 
-    <!-- Tarjeta2 -->
+    <!-- Tarjeta 2 -->
     <div class="postre-card">
       <div class="box-imagen">
         <img src="https://i.ytimg.com/vi/kcVMt1gtXds/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCmXH7pauOiPzjuAEkPyvGkltODvg" alt="Cheesecake">
@@ -60,7 +318,7 @@
           <h4>Ingredientes:</h4>
           <ul>
             <li>200 g de galletas María o digestive y 80 g de mantequilla derretida</li>
-            <li>500 g de queso crema, 200 ml de crema de leche (nata para montar), 150 g de azúcar, 3 huevos y 1 cucharadita de esencia de vainilla</li>
+            <li>500 g de queso crema, 200 ml de crema de leche, 150 g de azúcar, 3 huevos y 1 cdita. de esencia de vainilla</li>
           </ul>
           <h4>Paso a paso:</h4>
           <ol>
@@ -73,7 +331,7 @@
       </div>
     </div>
 
-    <!-- Tarjeta3 -->
+    <!-- Tarjeta 3 -->
     <div class="postre-card">
       <div class="box-imagen">
         <img src="https://www.giallozafferano.es/images/3-399/Tiramisu_1200x800.jpg" alt="Tiramisú">
@@ -99,7 +357,7 @@
       </div>
     </div>
 
-    <!-- Tarjeta4 -->
+    <!-- Tarjeta 4 -->
     <div class="postre-card">
       <div class="box-imagen">
         <img src="https://images.aws.nestle.recipes/original/2024_10_18T11_53_16_badun_images.badun.es_4ed41e942636_mousse_de_chocolate_intenso_3e96.jpg" alt="Mousse de Chocolate">
@@ -124,10 +382,10 @@
       </div>
     </div>
 
-    <!-- Tarjeta5 -->
+    <!-- Tarjeta 5 -->
     <div class="postre-card">
       <div class="box-imagen">
-        <img src="https://www.vvsupremo.com/wp-content/uploads/2017/11/Lime-Tart-Recipe-2.png" alt="Pie de Limón">
+        <img src="https://lacaranola.com/wp-content/uploads/2021/07/El-Pie-de-Limo%CC%81n-de-La-Caran%CC%83ola.jpg" alt="Pie de Limón">
       </div>
       <h3>Pie de Limón</h3>
 
@@ -149,7 +407,7 @@
       </div>
     </div>
 
-    <!-- Tarjeta6 -->
+    <!-- Tarjeta 6 -->
     <div class="postre-card">
       <div class="box-imagen">
         <img src="https://yhoyquecomemos.com/wp-content/uploads/2020/05/flan-de-huevo-receta.jpg" alt="Flan de Huevo">
@@ -174,7 +432,7 @@
       </div>
     </div>
 
-    <!-- Tarjeta7 -->
+    <!-- Tarjeta 7 -->
     <div class="postre-card">
       <div class="box-imagen">
         <img src="https://www.justspices.es/media/recipe/brownie-chocolate.jpg" alt="Brownie de Chocolate">
@@ -199,7 +457,7 @@
       </div>
     </div>
 
-    <!-- Tarjeta8 -->
+    <!-- Tarjeta 8 -->
     <div class="postre-card">
       <div class="box-imagen">
         <img src="https://www.sortirambnens.com/wp-content/uploads/2016/02/pannacotta.jpg" alt="Panacota">
@@ -227,16 +485,74 @@
   </div>
 </section>
 
-<script>
+<!-- CONTENEDOR DEL MODAL EMERGENTE -->
+<div id="recipe-modal-overlay" class="modal-overlay">
+  <div class="recipe-modal">
+    <button class="modal-close-btn" id="close-modal-btn">&times;</button>
     
-const tarjetas = document.querySelectorAll('.postre-card');
+    <div class="modal-body">
+      <div class="modal-left">
+        <div class="modal-img-container">
+          <img id="modal-img" src="" alt="Postre">
+        </div>
+        <h3 id="modal-title" class="modal-title"></h3>
+      </div>
 
-tarjetas.forEach(tarjeta => {
-  tarjeta.addEventListener('click', () => {
+      <div class="modal-right">
+        <span class="modal-subtitle">RECETA COMPLETA</span>
+        
+        <div class="recipe-section">
+          <h4 class="section-heading">Ingredientes:</h4>
+          <div id="modal-ingredients"></div>
+        </div>
 
-  tarjeta.classList.toggle('activa');
+        <hr class="divider">
+
+        <div class="recipe-section">
+          <h4 class="section-heading">Paso a paso:</h4>
+          <div id="modal-steps"></div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-primary" onclick="window.print()">Imprimir Receta</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const tarjetas = document.querySelectorAll('.postre-card');
+  const modalOverlay = document.getElementById('recipe-modal-overlay');
+  const closeModalBtn = document.getElementById('close-modal-btn');
+
+  tarjetas.forEach(tarjeta => {
+    tarjeta.addEventListener('click', () => {
+      const img = tarjeta.querySelector('.box-imagen img').src;
+      const titulo = tarjeta.querySelector('h3').innerText;
+      const ingredientes = tarjeta.querySelector('.receta-contenido ul').outerHTML;
+      const pasos = tarjeta.querySelector('.receta-contenido ol').outerHTML;
+
+      document.getElementById('modal-img').src = img;
+      document.getElementById('modal-title').innerText = titulo;
+      document.getElementById('modal-ingredients').innerHTML = ingredientes;
+      document.getElementById('modal-steps').innerHTML = pasos;
+
+      modalOverlay.classList.add('active');
+    });
   });
-});
+
+  function cerrarModal() {
+    modalOverlay.classList.remove('active');
+  }
+
+  closeModalBtn.addEventListener('click', cerrarModal);
+
+  modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) {
+      cerrarModal();
+    }
+  });
 </script>
 
 </body>

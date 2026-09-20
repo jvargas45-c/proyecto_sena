@@ -10,20 +10,10 @@ session_start();
     <title>Dulce Tentación</title>
     <link rel="stylesheet" href="css/estilo.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapfamily=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
-    <div class="manchas-fondo">
-        <div class="mancha m1"></div>
-        <div class="mancha m2"></div>
-        <div class="mancha m3"></div>
-        <div class="mancha m4"></div>
-        <div class="mancha m5"></div>
-        <div class="mancha m6"></div>
-    </div>
-
     
     <header>
         <h1>Dulce Tentación</h1>
@@ -47,16 +37,14 @@ session_start();
 
                     <?php else: ?>
 
-                        <a href="sesion/registrar.html">Registrarse</a>
-                        <a href="sesion/iniciar.html">Iniciar Sesión</a>
+                        <a href="sesion/registrar.html"><i class="fas fa-user-plus"></i>Registrarse</a>
+                        <a href="sesion/iniciar.html"><i class="fas fa-user"></i>Iniciar Sesión</a>
 
                     <?php endif; ?>
 
-                        <a href="pag_menu/postres.html">Preparar</a>
-                        <a href="pag_menu/acerca.html">Acerca de Nosotros</a>
-                        <a href="https://web.whatsapp.com/">Contáctanos</a>
-                        <a href="otra_pagina/panaderia.php">Panadería</a>
-                        <a href="carrito/historial.php">Mis pedidos</a>
+                        <a href="pag_menu/postres.html"><i class="fas fa-solid fa-cake-candles"></i>Preparar</a>
+                        <a href="panaderia/panaderia.php"><i class="fas fa-mug-saucer"></i>Panadería</a>
+                        <a href="carrito/historial.php"><i class="fas fa-box"></i>Mis pedidos</a>
                 </div>
             </div>
         </div>
@@ -76,14 +64,12 @@ session_start();
     }
     ?>
 
-    
     <section class="slider">
         <button id="prev">&#10094;</button>
-        <img id="slide" src="img/Promocion de bodas.png">
+        <img id="slide" src="img/Promocion de pasteles.png">
         <button id="next">&#10095;</button>
     </section>
 
-    
     <section class="categorias">
 
         <a href="productos.php?categoria=1" class="categoria">
@@ -116,7 +102,6 @@ session_start();
 
     </section>
 
-    
     <section class="blog">
         <h2>Conoce todo sobre Pastelería</h2>
 
@@ -138,8 +123,6 @@ session_start();
         </a>
         </div>
     </section>
-
-
 
 <button id="botonIA" class="boton-ia">
     🍰
@@ -190,9 +173,41 @@ session_start();
 
 </div>
 
+<footer class="footer-section">
+  <div class="footer-container">
+    
+    <!-- Columna 1: Nuestra Empresa -->
+    <div class="footer-column">
+      <h3 class="footer-title">Nuestra Empresa</h3>
+      <a href="pag_menu/acerca.html" class="footer-btn">
+        <i class="fas fa-users"></i> 
+        <span>Acerca de Nosotros</span>
+      </a>
+    </div>
+
+    <!-- Columna 2: Otras Tiendas -->
+    <div class="footer-column">
+      <h3 class="footer-title">Otras Tiendas</h3>
+      <a href="panaderia/panaderia.php" class="footer-btn">
+        <i class="fas fa-coffee"></i> 
+        <span>Panadería Dulce Tentación</span>
+      </a>
+    </div>
+
+    <!-- Columna 3: Contáctanos -->
+    <div class="footer-column">
+      <h3 class="footer-title">Contáctanos</h3>
+      <a href="https://web.whatsapp.com/" target="_blank" class="footer-btn">
+        <i class="fab fa-whatsapp"></i> 
+        <span>Contáctanos</span>
+      </a>
+    </div>
+
+  </div>
+</footer>
 
     <script src="js/script.js"></script>
     <script src="js/asistente.js"></script>
-    
+
 </body>
 </html>

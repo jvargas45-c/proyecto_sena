@@ -202,14 +202,22 @@ textarea:focus {
   line-height: 1.5;
 }
 
-/* Adaptación para pantallas pequeñas */
-@media (max-width: 768px) {
-  .history-card {
-    flex-direction: column;
+@media screen and (max-width: 768px) {
+  /* Suponiendo que los pasteles laterales son elementos separados o pseudo-elementos */
+  .cake-background-left,
+  .cake-background-right {
+    display: none;
   }
-  
-  .history-img {
-    width: 100%;
-    height: 150px;
+
+  .text-card {
+    width: 100%; /* La tarjeta de texto ocupa todo el ancho */
+    padding: 20px; /* Añade margen interno para que el texto no toque los bordes */
+    margin: 0; /* Elimina márgenes externos */
+    border: none; /* Opcional: quita el borde si lo tiene */
+  }
+
+  /* Asegura que el contenedor principal no tenga flex horizontal */
+  .main-container {
+    display: block; /* Cambia de flex a bloque para apilamiento vertical */
   }
 }
