@@ -66,7 +66,9 @@ session_start();
 
     <section class="slider">
         <button id="prev">&#10094;</button>
-        <img id="slide" src="img/Promocion de pasteles.png">
+        <a id="enlaceSlide" href="productos.php?categoria=2">
+            <img id="slide" src="img/Promocion de pasteles.png">
+        </a>
         <button id="next">&#10095;</button>
     </section>
 

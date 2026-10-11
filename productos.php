@@ -2,44 +2,48 @@
 include("conexion.php");
 
 
-$idCategoria = $_GET['categoria'] ?? 1;
-
-// Consulta
-$sql = "SELECT
-            p.id_producto,
-            p.nombre_producto,
-            p.tipo_ponque,
-            p.descripcion,
-            p.stock,
-            p.imagen,
-            c.nombre_categoria,
-            t.nombre_tamano,
-            pr.precio
-        FROM productos p
-        INNER JOIN categorias c
-            ON p.id_categoria = c.id_categoria
-        INNER JOIN tamanos t
-            ON p.id_tamano = t.id_tamano
-        INNER JOIN precios pr
-            ON p.id_producto = pr.id_producto
-        WHERE p.id_categoria = ?";
-
-$stmt = mysqli_prepare($conexion, $sql);
-mysqli_stmt_bind_param($stmt, "i", $idCategoria);
-mysqli_stmt_execute($stmt);
-
-$resultado = mysqli_stmt_get_result($stmt);
+$idCategoria = $_GET['categoria'] ?? '1';
 
 
-$titulos = [
-    1 => "Pastelería",
-    2 => "Personalizados",
-    3 => "Minis",
-    4 => "Antojitos",
-    5 => "Panadería"
-];
+if (strpos($idCategoria, ',') !== false) {
+    
+    $categoriasArray = array_map('intval', explode(',', $idCategoria));
+    $ids = implode(',', $categoriasArray);
+    
+    $sql = "SELECT p.*, c.nombre_categoria, t.nombre_tamano, pr.precio 
+            FROM productos p 
+            INNER JOIN categorias c ON p.id_categoria = c.id_categoria 
+            INNER JOIN tamanos t ON p.id_tamano = t.id_tamano 
+            INNER JOIN precios pr ON p.id_producto = pr.id_producto 
+            WHERE p.id_categoria IN ($ids)";
+    
+    $resultado = mysqli_query($conexion, $sql);
+    $titulo = "Antojos y Minis en Promoción";
+} else {
+    $idCategoriaInt = intval($idCategoria);
+    
+    $sql = "SELECT p.*, c.nombre_categoria, t.nombre_tamano, pr.precio 
+            FROM productos p 
+            INNER JOIN categorias c ON p.id_categoria = c.id_categoria 
+            INNER JOIN tamanos t ON p.id_tamano = t.id_tamano 
+            INNER JOIN precios pr ON p.id_producto = pr.id_producto 
+            WHERE p.id_categoria = ?";
 
-$titulo = $titulos[$idCategoria] ?? "Productos";
+    $stmt = mysqli_prepare($conexion, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $idCategoriaInt);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
+
+    $titulos = [
+        1 => "Pastelería",
+        2 => "Personalizados",
+        3 => "Minis",
+        4 => "Antojos",
+        5 => "Panadería"
+    ];
+
+    $titulo = $titulos[$idCategoriaInt] ?? "Productos";
+}
 ?>
 
 <!DOCTYPE html>
