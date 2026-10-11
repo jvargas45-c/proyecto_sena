@@ -112,6 +112,20 @@ elseif (
     echo "Ve al menú y dale clic a Panadería para ver otros productos ☕";
 }
 
+elseif (
+    str_contains($mensaje, "como estas")
+) {
+    echo "Estoy muy bien, gracias por preguntar ❤️, ¿Qué tal todo?";
+}
+
+elseif (
+    str_contains($mensaje, "estoy bien") ||
+    str_contains($mensaje, "todo bien" ) ||
+    str_contains($mensaje, "bien")
+) {
+    echo "Me alegra que estes bien, ¿En qué te puedo ayudar?";
+}
+
 else {
 
     echo "🤔 Todavía estoy aprendiendo. Puedes preguntarme sobre nuestras tortas, minis, personalizados, antojitos o cómo realizar una compra.";

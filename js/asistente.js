@@ -8,20 +8,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const mensajesIA = document.getElementById("mensajesIA");
 
     
+    cargarHistorial();
+
     botonIA.addEventListener("click", () => {
         ventanaIA.classList.toggle("oculto");
         entradaIA.focus();
+        scrollToBottom();
     });
 
-    
     cerrarIA.addEventListener("click", () => {
         ventanaIA.classList.add("oculto");
     });
 
-    
     enviarIA.addEventListener("click", enviarMensaje);
 
-    
     entradaIA.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
             enviarMensaje();
@@ -29,23 +29,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function enviarMensaje() {
-
         const mensaje = entradaIA.value.trim();
 
         if (mensaje === "") {
             return;
         }
 
-        
         agregarMensaje(mensaje, "usuario");
+        guardarEnHistorial(mensaje, "usuario");
 
         entradaIA.value = "";
 
-        
-        const escribiendo = agregarMensaje(
-            "DulceIA está pensando...",
-            "ia"
-        );
+        const escribiendo = agregarMensaje("DulceIA está pensando...", "ia");
 
         fetch("ia/procesar.php", {
             method: "POST",
@@ -56,38 +51,83 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(response => response.text())
         .then(respuesta => {
-
-            escribiendo.remove();
+            if (escribiendo && escribiendo.parentNode) {
+                escribiendo.remove();
+            }
 
             agregarMensaje(respuesta, "ia");
-
+            guardarEnHistorial(respuesta, "ia");
         })
         .catch(error => {
+            if (escribiendo && escribiendo.parentNode) {
+                escribiendo.remove();
+            }
 
-            escribiendo.remove();
-
-            agregarMensaje(
-                "Lo siento 😔, ocurrió un problema. Inténtalo nuevamente.",
-                "ia"
-            );
+            const errorMsg = "Lo siento 😔, ocurrió un problema. Inténtalo nuevamente.";
+            agregarMensaje(errorMsg, "ia");
+            guardarEnHistorial(errorMsg, "ia");
 
             console.error(error);
         });
     }
 
     function agregarMensaje(texto, tipo) {
-
         const mensaje = document.createElement("div");
-
         mensaje.classList.add("mensaje", tipo);
-
-        mensaje.textContent = texto;
+        
+        if (tipo === "ia") {
+            mensaje.innerHTML = texto;
+        } else {
+            mensaje.textContent = texto;
+        }
 
         mensajesIA.appendChild(mensaje);
-
-        mensajesIA.scrollTop = mensajesIA.scrollHeight;
+        scrollToBottom();
 
         return mensaje;
     }
+
+    function scrollToBottom() {
+        mensajesIA.scrollTop = mensajesIA.scrollHeight;
+    }
+
+    function guardarEnHistorial(texto, tipo) {
+        let historial = JSON.parse(sessionStorage.getItem("chat_dulceia")) || [];
+        if (texto === "DulceIA está pensando...") return;
+        historial.push({ texto, tipo });
+        sessionStorage.setItem("chat_dulceia", JSON.stringify(historial));
+    }
+
+    function cargarHistorial() {
+        let historial = JSON.parse(sessionStorage.getItem("chat_dulceia")) || [];
+        
+        if (historial.length === 0) return;
+
+        
+        if (mensajesIA.children.length <= 1) { 
+            historial.forEach(item => {
+                const mensaje = document.createElement("div");
+                mensaje.classList.add("mensaje", item.tipo);
+                if (item.tipo === "ia") {
+                    mensaje.innerHTML = item.texto;
+                } else {
+                    mensaje.textContent = item.texto;
+                }
+                mensajesIA.appendChild(mensaje);
+            });
+            scrollToBottom();
+        }
+    }
+
+    const observer = new MutationObserver((mutations) => {
+        if (mensajesIA.children.length === 0) {
+            let historial = JSON.parse(sessionStorage.getItem("chat_dulceia")) || [];
+            if (historial.length > 0) {
+                cargarHistorial();
+            }
+        }
+    });
+
+    observer.observe(mensajesIA, { childList: true });
 
 });

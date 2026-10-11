@@ -399,28 +399,34 @@ article p{
     flex: 1;
     padding: 15px;
     overflow-y: auto;
-    background: #faf7f5;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f9f4f1;
 }
 
 .mensaje {
     max-width: 80%;
-    padding: 10px 13px;
-    margin-bottom: 10px;
-    border-radius: 15px;
+    padding: 10px 14px;
+    border-radius: 12px;
     font-size: 14px;
     line-height: 1.4;
+    word-wrap: break-word;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .mensaje.ia {
-    background: #ead8ce;
-    color: #3d2920;
+    background: #ffffff;
+    color: #333;
     align-self: flex-start;
+    border-bottom-left-radius: 2px;
 }
 
 .mensaje.usuario {
-    background: #8b4a32;
-    color: white;
-    margin-left: auto;
+    background: #8b4513;
+    color: #ffffff;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
 }
 
 .entrada-ia {
