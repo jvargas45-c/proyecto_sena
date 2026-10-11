@@ -38,7 +38,7 @@ $resultado = mysqli_stmt_get_result($stmt);
 
 <header>
     <h1>Dulce Tentación</h1>
-    <a href="../index.php" style="color: white; text-decoration: none;"><i class="fas fa-home"></i> Volver al inicio</a>
+    <a href="../index.php" style="color: #A4525E; text-decoration: none;"><i class="fas fa-home"></i> Volver al inicio</a>
 </header>
 
 <main>
