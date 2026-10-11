@@ -18,7 +18,7 @@ session_start();
     <header>
         <h1>Dulce Tentación</h1>
         <div class="iconos">
-            <a href="favoritos/favorito.html">
+            <a href="favoritos/favorito.php">
                 <i class="fa-solid fa-heart"></i>
             </a>
             
