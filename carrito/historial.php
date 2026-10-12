@@ -77,6 +77,29 @@ tr:nth-child(even){
 .eliminar:hover{
     background:#b02a37;
 }
+
+@media (max-width: 768px) {
+.tabla-contenedor, 
+.contenedor-pedidos, 
+.pedidos-container {
+    width: 100% !important;
+    overflow-x: auto !important; /* Permite desplazamiento lateral si la tabla es grande */
+    -webkit-overflow-scrolling: touch;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+}
+
+table {
+    width: 100% !important;
+    font-size: 13px !important;
+}
+
+th, td {
+    padding: 8px 4px !important;
+    text-align: center !important;
+    word-break: break-word;
+}
+}
 </style>
 
 </head>

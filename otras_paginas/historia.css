@@ -202,22 +202,55 @@ textarea:focus {
   line-height: 1.5;
 }
 
+/* ==========================================
+   ADAPTABILIDAD MÓVIL PARA HISTORIA DE LA REPOSTERÍA
+   ========================================== */
+
 @media screen and (max-width: 768px) {
-  /* Suponiendo que los pasteles laterales son elementos separados o pseudo-elementos */
-  .cake-background-left,
-  .cake-background-right {
-    display: none;
-  }
+    /* 1. Cambiar el layout principal de 3 columnas a una sola columna */
+    .main-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: none !important;
+        min-height: auto !important;
+    }
 
-  .text-card {
-    width: 100%; /* La tarjeta de texto ocupa todo el ancho */
-    padding: 20px; /* Añade margen interno para que el texto no toque los bordes */
-    margin: 0; /* Elimina márgenes externos */
-    border: none; /* Opcional: quita el borde si lo tiene */
-  }
+    /* 2. Ocultar los laterales de imágenes en celular para que no estorben */
+    .sidebar {
+        display: none !important;
+    }
 
-  /* Asegura que el contenedor principal no tenga flex horizontal */
-  .main-container {
-    display: block; /* Cambia de flex a bloque para apilamiento vertical */
-  }
+    /* 3. Hacer que el área de contenido ocupe todo el ancho de la pantalla */
+    .content-area {
+        width: 100% !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 4. Ajustar el banner superior y las tarjetas de la historia */
+    .hero-banner {
+        margin: 10px !important;
+        padding: 15px !important;
+    }
+
+    .hero-banner h2 {
+        font-size: 1.5rem !important;
+    }
+
+    /* 5. Apilar las tarjetas de la historia en columna si tienen imagen al lado */
+    .history-card {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .history-img {
+        width: 100% !important;
+        height: 200px !important;
+    }
+
+    .history-content {
+        padding: 15px !important;
+        text-align: center !important;
+    }
 }

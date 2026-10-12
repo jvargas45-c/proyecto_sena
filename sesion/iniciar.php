@@ -24,21 +24,19 @@ if(mysqli_num_rows($resultado) == 1){
 
         $_SESSION["id_usuario"] = $usuario["id_usuario"];
         $_SESSION["nombre"] = $usuario["nombre"];
-        $_SESSION["rol"] = $usuario["rol"];
+        $_SESSION["rol"] = $usuario["rol"]; // 'admin' o 'cliente' guardado en la BD
 
         $_SESSION["mensaje"] = "🌸 ¡Bienvenido, ".$usuario["nombre"]."!";
         $_SESSION["tipo"] = "success";
 
-        header("Location: ../index.php");
+        // Redirección basada estrictamente en el rol de la base de datos
+        if ($_SESSION["rol"] === "admin") {
+            header("Location: ../admin/panel.php");
+        } else {
+            header("Location: ../index.php");
+        }
         exit();
 
-    }else{
-
-        $_SESSION["mensaje"] = "Contraseña incorrecta.";
-        $_SESSION["tipo"] = "error";
-
-        header("Location: iniciar.html");
-        exit();
     }
 
 }else{

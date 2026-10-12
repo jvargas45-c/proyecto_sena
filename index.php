@@ -18,6 +18,13 @@ session_start();
     <header>
         <h1>Dulce Tentación</h1>
         <div class="iconos">
+            <!-- AQUÍ AGREGAS EL BOTÓN DE ADMIN -->
+            <?php if (isset($_SESSION["rol"]) && $_SESSION["rol"] === "admin"): ?>
+                <a href="admin/panel.php" title="Panel de Administración">
+                    <i class="fa-solid fa-gear"></i>
+                </a>
+            <?php endif; ?>
+
             <a href="favoritos/favorito.php">
                 <i class="fa-solid fa-heart"></i>
             </a>
