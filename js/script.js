@@ -1,14 +1,14 @@
 const imagenes = [
-    "img/Promocion de pasteles.png",     // Índice 0
-    "img/Promocion de postres.png",     // Índice 1
-    "img/Promocion_antojos.png"         // Índice 2
+    "img/Promocion de pasteles.png",    
+    "img/Promocion de postres.png",     
+    "img/Promocion_antojos.png"         
 ];
 
-// Los enlaces correspondientes a cada banner en orden exacto:
+
 const enlaces = [
-    "productos.php?categoria=2",        // Banner 1 -> Categoría 2 (Pasteles Altos)
-    "productos.php?categoria=1",        // Banner 2 -> Categoría 1 (Postres / 25%)
-    "productos.php?categoria=3,4"       // Banner 3 -> Categorías 3 y 4 (Antojos / 50%)
+    "productos.php?categoria=2",        
+    "productos.php?categoria=1",        
+    "productos.php?categoria=3,4"       
 ];
 
 let actual = 0;
@@ -20,7 +20,7 @@ const prev = document.getElementById("prev");
 
 function actualizarSlider() {
     slide.src = imagenes[actual];
-    enlaceSlide.href = enlaces[actual]; // Esto actualiza el link del <a> según la imagen activa
+    enlaceSlide.href = enlaces[actual]; 
 }
 
 next.addEventListener("click", function () {

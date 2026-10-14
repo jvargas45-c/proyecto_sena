@@ -83,7 +83,7 @@ tr:nth-child(even){
 .contenedor-pedidos, 
 .pedidos-container {
     width: 100% !important;
-    overflow-x: auto !important; /* Permite desplazamiento lateral si la tabla es grande */
+    overflow-x: auto !important; 
     -webkit-overflow-scrolling: touch;
     padding: 10px !important;
     box-sizing: border-box !important;

@@ -2,11 +2,11 @@
 session_start();
 include("../conexion.php");
 
-// Recibir datos
+
 $correo = $_POST["email"];
 $password = $_POST["password"];
 
-// Buscar usuario
+
 $sql = "SELECT * FROM usuarios WHERE correo = ?";
 
 $stmt = mysqli_prepare($conexion, $sql);
@@ -19,17 +19,17 @@ if(mysqli_num_rows($resultado) == 1){
 
     $usuario = mysqli_fetch_assoc($resultado);
 
-    // Verificar contraseña
+    
     if(password_verify($password, $usuario["contrasena"])){
 
         $_SESSION["id_usuario"] = $usuario["id_usuario"];
         $_SESSION["nombre"] = $usuario["nombre"];
-        $_SESSION["rol"] = $usuario["rol"]; // 'admin' o 'cliente' guardado en la BD
+        $_SESSION["rol"] = $usuario["rol"]; 
 
         $_SESSION["mensaje"] = "🌸 ¡Bienvenido, ".$usuario["nombre"]."!";
         $_SESSION["tipo"] = "success";
 
-        // Redirección basada estrictamente en el rol de la base de datos
+        
         if ($_SESSION["rol"] === "admin") {
             header("Location: ../admin/panel.php");
         } else {

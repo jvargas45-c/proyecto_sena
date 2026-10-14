@@ -2,7 +2,7 @@
 session_start();
 include("../conexion.php");
 
-// Verificar que el usuario haya iniciado sesión
+
 if (!isset($_SESSION["id_usuario"])) {
     header("Location: ../sesion/iniciar.html");
     exit();
@@ -11,7 +11,7 @@ if (!isset($_SESSION["id_usuario"])) {
 $id_usuario = $_SESSION["id_usuario"];
 $id_producto = $_GET["id"];
 
-// Buscar la cantidad actual
+
 $sql = "SELECT cantidad
         FROM carrito
         WHERE id_usuario = ? AND id_producto = ?";
@@ -38,7 +38,7 @@ if ($fila = mysqli_fetch_assoc($resultado)) {
 
     } else {
 
-        // Si solo queda uno, eliminar el producto
+        
         $sql = "DELETE FROM carrito
                 WHERE id_usuario = ? AND id_producto = ?";
 

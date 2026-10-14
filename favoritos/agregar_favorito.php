@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultado = mysqli_stmt_get_result($stmt);
 
     if (mysqli_num_rows($resultado) == 0) {
-        // Si no existe, lo insertamos
+        
         $sql_insertar = "INSERT INTO favoritos (id_usuario, id_producto) VALUES (?, ?)";
         $stmt_insert = mysqli_prepare($conexion, $sql_insertar);
         mysqli_stmt_bind_param($stmt_insert, "ii", $id_usuario, $id_producto);

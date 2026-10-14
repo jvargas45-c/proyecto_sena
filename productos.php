@@ -89,7 +89,7 @@ if (strpos($idCategoria, ',') !== false) {
 
         <div class="producto">
 
-            <!-- Imagen -->
+            
             <img src="img/img2/<?= htmlspecialchars($producto['imagen']); ?>" alt="<?= htmlspecialchars($producto['nombre_producto']); ?>">
 
             <h3><?= $producto['nombre_producto']; ?></h3>

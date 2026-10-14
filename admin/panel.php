@@ -2,16 +2,16 @@
 session_start();
 include("../conexion.php");
 
-// Verificar si es administrador
+
 if (!isset($_SESSION["rol"]) || $_SESSION["rol"] !== "admin") {
     header("Location: ../index.php");
     exit();
 }
 
-// Lógica para eliminar producto si se envía una petición POST o GET
+
 if (isset($_GET["eliminar"])) {
     $id_eliminar = $_GET["eliminar"];
-    // Borramos primero de precios para respetar las llaves foráneas y luego de productos
+    
     mysqli_query($conexion, "DELETE FROM precios WHERE id_producto = $id_eliminar");
     mysqli_query($conexion, "DELETE FROM productos WHERE id_producto = $id_eliminar");
     header("Location: panel.php");

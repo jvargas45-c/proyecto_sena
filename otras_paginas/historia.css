@@ -202,12 +202,10 @@ textarea:focus {
   line-height: 1.5;
 }
 
-/* ==========================================
-   ADAPTABILIDAD MÓVIL PARA HISTORIA DE LA REPOSTERÍA
-   ========================================== */
+
 
 @media screen and (max-width: 768px) {
-    /* 1. Cambiar el layout principal de 3 columnas a una sola columna */
+    
     .main-layout {
         display: flex !important;
         flex-direction: column !important;
@@ -215,19 +213,19 @@ textarea:focus {
         min-height: auto !important;
     }
 
-    /* 2. Ocultar los laterales de imágenes en celular para que no estorben */
+    
     .sidebar {
         display: none !important;
     }
 
-    /* 3. Hacer que el área de contenido ocupe todo el ancho de la pantalla */
+    
     .content-area {
         width: 100% !important;
         padding: 10px !important;
         box-sizing: border-box !important;
     }
 
-    /* 4. Ajustar el banner superior y las tarjetas de la historia */
+    
     .hero-banner {
         margin: 10px !important;
         padding: 15px !important;
@@ -237,7 +235,7 @@ textarea:focus {
         font-size: 1.5rem !important;
     }
 
-    /* 5. Apilar las tarjetas de la historia en columna si tienen imagen al lado */
+    
     .history-card {
         flex-direction: column !important;
         align-items: center !important;

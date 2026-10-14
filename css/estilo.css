@@ -619,8 +619,7 @@ article p{
 
 
 @media (max-width: 768px) {
-/* Acomodar la barra superior para que los iconos no se monten en
-el titulo */
+
 header {
 display: flex;
 flex-direction: column;
@@ -641,7 +640,7 @@ margin-top: 5px;
 justify-content: center;
 }
 
-/* Ajustar las categorias en el Index para móvil */
+
 .categorias {
 display: flex;
 flex-direction: column;
@@ -719,7 +718,7 @@ article {
         box-sizing: border-box !important;
     }
 
-    /* Acomoda los botones del carrito verticalmente en móvil */
+    
     .acciones-carrito, 
     .botones-carrito {
         display: flex !important;

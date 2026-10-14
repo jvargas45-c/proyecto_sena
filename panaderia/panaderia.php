@@ -1,7 +1,7 @@
 <?php
 include("../conexion.php");
 
-$idCategoria = 5; // Panadería / Cafetería
+$idCategoria = 5; 
 
 $sql = "SELECT
             p.id_producto,
@@ -39,7 +39,7 @@ $resultado = mysqli_stmt_get_result($stmt);
 </head>
 <body>
 
-<!-- HEADER ESTILO HORNITOS -->
+
 <header class="site-header">
   <div class="top-bar">
     <p>🥖 ¡Pan recién horneado todos los días! Envíos locales y pedidos programados.</p>
@@ -68,7 +68,7 @@ $resultado = mysqli_stmt_get_result($stmt);
 
 </header>
 
-<!-- HERO / BANNER PRINCIPAL ESTILO SLIDER -->
+
 <section class="hero-banner">
   <div class="container hero-content">
     <div class="hero-tag">Novedades de la semana</div>
@@ -78,7 +78,7 @@ $resultado = mysqli_stmt_get_result($stmt);
   </div>
 </section>
 
-<!-- SECCIÓN DE PRODUCTOS EN GRID O CARRUSEL -->
+
 <section class="productos-section" id="productos">
   <div class="container">
     <div class="section-header">
@@ -123,11 +123,11 @@ $resultado = mysqli_stmt_get_result($stmt);
   </div>
 </section>
 
-<!-- FOOTER DULCE TENTACIÓN -->
+
 <footer class="main-footer">
   <div class="container footer-grid">
     
-    <!-- COLUMNA 1: ACERCA DE NOSOTROS -->
+    
     <div class="footer-col">
       <a href="../acerca.php" class="footer-brand-link">
         <div class="footer-logo">
@@ -139,7 +139,7 @@ $resultado = mysqli_stmt_get_result($stmt);
       <a href="../acerca.php" class="footer-link-btn">Saber más <i class="fa-solid fa-arrow-right"></i></a>
     </div>
 
-    <!-- COLUMNA 2: OTRAS TIENDAS -->
+    
     <div class="footer-col">
       <div class="footer-header">
         <div class="footer-logo">
@@ -154,7 +154,7 @@ $resultado = mysqli_stmt_get_result($stmt);
       </div>
     </div>
 
-    <!-- COLUMNA 3: CONTÁCTANOS -->
+    
     <div class="footer-col">
       <div class="footer-header">
         <div class="footer-logo whatsapp-logo">

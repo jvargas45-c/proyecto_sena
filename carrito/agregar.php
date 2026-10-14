@@ -2,7 +2,7 @@
 session_start();
 include("../conexion.php");
 
-// Verificar que el usuario haya iniciado sesión
+
 if (!isset($_SESSION["id_usuario"])) {
 
     $_SESSION["mensaje"] = "Debes iniciar sesión para agregar productos al carrito.";
@@ -15,7 +15,7 @@ if (!isset($_SESSION["id_usuario"])) {
 $id_usuario = $_SESSION["id_usuario"];
 $id_producto = $_POST["id_producto"];
 
-// Verificar si el producto ya está en el carrito
+
 $sql = "SELECT * FROM carrito
         WHERE id_usuario = ? AND id_producto = ?";
 
@@ -27,7 +27,7 @@ $resultado = mysqli_stmt_get_result($stmt);
 
 if(mysqli_num_rows($resultado) > 0){
 
-    // Si ya existe, aumentar la cantidad
+    
     $sql = "UPDATE carrito
             SET cantidad = cantidad + 1
             WHERE id_usuario = ? AND id_producto = ?";
@@ -37,7 +37,7 @@ if(mysqli_num_rows($resultado) > 0){
 
 }else{
 
-    // Si no existe, agregarlo
+    
     $sql = "INSERT INTO carrito(id_usuario,id_producto,cantidad)
             VALUES(?,?,1)";
 

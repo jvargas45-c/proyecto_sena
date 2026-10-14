@@ -1,5 +1,5 @@
 :root {
-  --primary-red: #c82333; /* O un tono terracota/rojo cálido característico de panaderías */
+  --primary-red: #c82333; 
   --accent-gold: #d4a359;
   --bg-cream: #faf7f2;
   --bg-card: #ffffff;
@@ -94,11 +94,11 @@ body { font-family: 'Poppins', sans-serif; background: var(--bg-cream); color: v
 
 /* VARIABLES DE COLOR PARA EL FOOTER */
 :root {
-  --footer-bg: #2b1f1d;        /* Café oscuro profundo */
-  --footer-card-bg: #3a2b28;   /* Café intermedio para destacar elementos */
-  --footer-text: #e8ded8;      /* Texto beige/crema suave */
-  --footer-title: #ffffff;     /* Blanco para títulos */
-  --accent-gold: #d4a359;      /* Dorado característico */
+  --footer-bg: #2b1f1d;        
+  --footer-card-bg: #3a2b28;   
+  --footer-text: #e8ded8;      
+  --footer-title: #ffffff;     
+  --accent-gold: #d4a359;      
 }
 
 /* FOOTER PRINCIPAL */

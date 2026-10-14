@@ -1,6 +1,4 @@
-// ============================================
-// Carrusel de "Nuestros Favoritos"
-// ============================================
+
 document.addEventListener('DOMContentLoaded', () => {
   const track = document.getElementById('carouselTrack');
   const leftBtn = document.querySelector('.carousel-arrow.left');

@@ -10,7 +10,7 @@ if (!isset($_SESSION["id_usuario"])) {
 $id_usuario = $_SESSION["id_usuario"];
 $id_pedido = $_GET["id"];
 
-// Verificar que el pedido pertenezca al usuario
+
 $sql = "SELECT *
         FROM pedidos
         WHERE id_pedido = ? AND id_usuario = ?";
@@ -27,7 +27,7 @@ if (mysqli_num_rows($pedido) == 0) {
 
 $pedido = mysqli_fetch_assoc($pedido);
 
-// Obtener los productos del pedido
+
 $sql = "SELECT
             dp.cantidad,
             dp.precio,

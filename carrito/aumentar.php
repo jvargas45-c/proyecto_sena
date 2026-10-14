@@ -2,7 +2,7 @@
 session_start();
 include("../conexion.php");
 
-// Verificar que el usuario haya iniciado sesión
+
 if (!isset($_SESSION["id_usuario"])) {
     header("Location: ../sesion/iniciar.html");
     exit();
@@ -11,7 +11,7 @@ if (!isset($_SESSION["id_usuario"])) {
 $id_usuario = $_SESSION["id_usuario"];
 $id_producto = $_GET["id"];
 
-// Verificar si el producto existe en el carrito
+
 $sql = "SELECT cantidad
         FROM carrito
         WHERE id_usuario = ? AND id_producto = ?";

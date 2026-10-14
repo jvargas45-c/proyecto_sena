@@ -2,7 +2,7 @@
 session_start();
 include("../conexion.php");
 
-// Recibir datos del formulario
+
 $nombre = $_POST['firstName'];
 $apellido = $_POST['lastName'];
 $correo = $_POST['email'];
@@ -14,10 +14,10 @@ $confirmar = $_POST['confirmPassword'];
 
 $rol = "cliente";
 
-// Unir nombre y apellido
+
 $nombreCompleto = $nombre . " " . $apellido;
 
-// Validar que las contraseñas coincidan
+
 if ($password != $confirmar) {
 
     $_SESSION['mensaje'] = "Las contraseñas no coinciden.";
@@ -27,7 +27,7 @@ if ($password != $confirmar) {
     exit();
 }
 
-// Verificar si el correo ya existe
+
 $sql = "SELECT id_usuario FROM usuarios WHERE correo = ?";
 
 $stmt = mysqli_prepare($conexion, $sql);
@@ -45,7 +45,7 @@ if (mysqli_num_rows($resultado) > 0) {
     exit();
 }
 
-// Verificar si el usuario ya existe
+
 $sql = "SELECT id_usuario FROM usuarios WHERE usuario = ?";
 
 $stmt = mysqli_prepare($conexion, $sql);
@@ -63,10 +63,10 @@ if (mysqli_num_rows($resultado) > 0) {
     exit();
 }
 
-// Encriptar contraseña
+
 $contrasena = password_hash($password, PASSWORD_DEFAULT);
 
-// Insertar usuario
+
 $sql = "INSERT INTO usuarios
 (nombre, correo, telefono, usuario, contrasena, rol)
 VALUES (?, ?, ?, ?, ?, ?)";
@@ -84,7 +84,7 @@ mysqli_stmt_bind_param(
     $rol
 );
 
-// Ejecutar
+
 if (mysqli_stmt_execute($stmt)) {
 
     $_SESSION['mensaje'] = "🎉 ¡Registro exitoso! Ya puedes iniciar sesión.";

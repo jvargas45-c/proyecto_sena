@@ -18,7 +18,6 @@ session_start();
     <header>
         <h1>Dulce Tentación</h1>
         <div class="iconos">
-            <!-- AQUÍ AGREGAS EL BOTÓN DE ADMIN -->
             <?php if (isset($_SESSION["rol"]) && $_SESSION["rol"] === "admin"): ?>
                 <a href="admin/panel.php" title="Panel de Administración">
                     <i class="fa-solid fa-gear"></i>
@@ -185,7 +184,7 @@ session_start();
 <footer class="footer-section">
   <div class="footer-container">
     
-    <!-- Columna 1: Nuestra Empresa -->
+    
     <div class="footer-column">
       <h3 class="footer-title">Nuestra Empresa</h3>
       <a href="pag_menu/acerca.html" class="footer-btn">
@@ -194,7 +193,7 @@ session_start();
       </a>
     </div>
 
-    <!-- Columna 2: Otras Tiendas -->
+
     <div class="footer-column">
       <h3 class="footer-title">Otras Tiendas</h3>
       <a href="panaderia/panaderia.php" class="footer-btn">
@@ -203,7 +202,7 @@ session_start();
       </a>
     </div>
 
-    <!-- Columna 3: Contáctanos -->
+    
     <div class="footer-column">
       <h3 class="footer-title">Contáctanos</h3>
       <a href="https://web.whatsapp.com/" target="_blank" class="footer-btn">

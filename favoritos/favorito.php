@@ -9,7 +9,7 @@ if (!isset($_SESSION["id_usuario"])) {
 
 $id_usuario = $_SESSION["id_usuario"];
 
-// Consultar los productos favoritos del usuario
+
 $sql = "SELECT p.*, c.nombre_categoria, t.nombre_tamano, pr.precio 
         FROM favoritos f
         INNER JOIN productos p ON f.id_producto = p.id_producto

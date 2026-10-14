@@ -133,12 +133,10 @@ header a{
 }
 
 
-/* ==========================================
-   ADAPTABILIDAD MÓVIL PARA 4 FRUTAS EXÓTICAS
-   ========================================== */
+
 
 @media screen and (max-width: 768px) {
-    /* 1. Cambiar el layout principal de 3 columnas a una sola columna */
+    
     .main-layout {
         display: flex !important;
         flex-direction: column !important;
@@ -146,19 +144,19 @@ header a{
         min-height: auto !important;
     }
 
-    /* 2. Ocultar los laterales de imágenes en celular para liberar espacio */
+    
     .sidebar {
         display: none !important;
     }
 
-    /* 3. Hacer que el área de contenido ocupe todo el ancho de la pantalla */
+    
     .content-area {
         width: 100% !important;
         padding: 5px !important;
         box-sizing: border-box !important;
     }
 
-    /* 4. Ajustar el contenedor principal del artículo de frutas */
+    
     .articulo-post {
         width: 95% !important;
         margin: 15px auto !important;
@@ -169,7 +167,7 @@ header a{
         font-size: 1.5rem !important;
     }
 
-    /* 5. Apilar las tarjetas de cada fruta para que la imagen quede arriba y el texto abajo */
+    
     .fruta-card {
         flex-direction: column !important;
         align-items: center !important;
